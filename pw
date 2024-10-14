@@ -27,6 +27,18 @@ list () {
 	cat $STORAGE | awk -F $COL_SP '{print $1}'
 }
 
+copy () {
+	if [ "$(uname)" == "Darwin" ]; then
+		echo $1 | tr -d '\n' | pbcopy
+	elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+		echo $1 | tr -d '\n' | xclip -selection c
+	# elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+	    # Do something under 32 bits Windows NT platform
+	# elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+	    # Do something under 64 bits Windows NT platform
+	fi
+}
+
 get () {
 	if [ -z $2 ] ; then
 		err "Введите ключ"
@@ -42,7 +54,7 @@ get () {
 		PASSWORD=$(echo $PASSWORD | openssl aes-256-cbc -a -A -d)
 	fi
 
-	echo $PASSWORD | tr -d '\n' | pbcopy
+	copy $PASSWORD
 }
 
 del () {
