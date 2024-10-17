@@ -6,13 +6,12 @@ touch -- "$STORAGE"
 COL_SP=":::::"
 
 help() {
-	echo -e "\nAvailable commands:\n"
+	echo -e "Available commands:\n"
 	echo -e "  list              - Show all keys"
 	echo -e "  add <key> <value> - Add a key/value pair"
 	echo -e "  del <key>         - Remove a key"
 	echo -e "  get <key>         - Copy value to clipboard"
 	echo -e "  ssh <key>         - Copy value and run ssh"
-	echo
 	exit
 }
 
