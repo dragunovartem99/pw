@@ -1,41 +1,42 @@
 # pw
 
-Утилита для копирования значения по ключу из файла в буфер
+Simple CLI password manager  
+Created by [@z-z](https://github.com/z-z)
 
-## Установка
+## Installation
 
-Склонируйте проект и добавьте в .bashrc / .zshrc следующие строки:
+Clone the repository and add the following lines to your `.bashrc` or `.zshrc`:
 
 ```shell
-export PW_PATH="<путь до склонированной папки>"
+export PW_PATH="<path to cloned directory>"
 export PATH="$PW_PATH:$PATH"
 source $PW_PATH/pass-completions.sh
 ```
 
-Для работы в Linux необходима программа `xclip`
+For Linux, ensure the program `xclip` is installed
 
-## Доступные команды
+## Available Commands
 
 - **help**  
-  Выводит информацию о доступных командах
+  Show a list of available commands
 
 - **list**  
-  Получение всех ключей из файла
+  Display all keys stored in the file
 
 - **add** `<key>` `<value>`  
-  Добавление новой пары ключ/значение
+  Add a new key/value pair
 
 - **del** `<key>`  
-  Удаление записи по ключу
+  Remove the entry associated with the key
 
 - **get** `<key>`  
-  Копирование значения по ключу в буфер
+  Copy the value for the specified key to the clipboard
 
 - **ssh** `<key>`  
-  Копирование значения по ключу в буфер и запуск команды `ssh <key>`  
-  Для работы этой функции необходимо настроить `.ssh/config`
+  Copy the value to the clipboard and run `ssh <key>`  
+  Ensure proper configuration in `.ssh/config`
 
-## Пример записи в `.ssh/config`
+## Example entry in `.ssh/config`
 
 ```
 Host <key>
