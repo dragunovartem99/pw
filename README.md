@@ -21,7 +21,7 @@ For Linux, ensure the program `xclip` is installed
   Show a list of available commands
 
 - **list**  
-  Display all keys stored in the file
+  Show all keys stored in the file
 
 - **add** `<key>` `<value>`  
   Add a new key/value pair
@@ -33,7 +33,7 @@ For Linux, ensure the program `xclip` is installed
   Copy the value for the specified key to the clipboard
 
 - **ssh** `<key>`  
-  Copy the value to the clipboard and run `ssh <key>`  
+  Copy the value for the specified key to the clipboard and run `ssh <key>`  
   Ensure proper configuration in `.ssh/config`
 
 ## Example entry in `.ssh/config`
