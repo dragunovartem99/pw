@@ -3,15 +3,15 @@
 STORAGE=$PW_PATH/pw.txt
 touch -- "$STORAGE"
 
-COL_SP=':::::'
+COL_SP=":::::"
 
 help() {
-	echo -e "\nДоступные команды:\n"
-	echo -e "  list              - Получение всех ключей из файла"
-	echo -e "  add <key> <value> - Добавление новой пары ключ/значение"
-	echo -e "  del <key>         - Удаление записи по ключу"
-	echo -e "  get <key>         - Копирование значения по ключу в буфер"
-	echo -e "  ssh <key>         - Копирование значения по ключу в буфер, запуск ssh"
+	echo -e "\nAvailable commands:\n"
+	echo -e "  list              - Show all keys"
+	echo -e "  add <key> <value> - Add a key/value pair"
+	echo -e "  del <key>         - Remove a key"
+	echo -e "  get <key>         - Copy value to clipboard"
+	echo -e "  ssh <key>         - Copy value and run ssh"
 	echo
 	exit
 }
@@ -22,7 +22,7 @@ err () {
 }
 
 invalid () {
-	err "Команда $1 не существует"
+	err "Command '$1' does not exist"
 }
 
 list () {
@@ -43,13 +43,13 @@ copy () {
 
 get () {
 	if [ -z $2 ] ; then
-		err "Введите ключ"
+		err "Please enter a key"
 	fi
 
 	PASSWORD=$(awk -F $COL_SP '/^'$2$COL_SP'/{print $2}' $STORAGE)
 
 	if [ -z $PASSWORD ] ; then
-		err "Ключ $2 не существует"
+		err "Key '$2' does not exist"
 	fi
 
 	if [[ $(awk -F $COL_SP '/^'$2'/{print $3}' $STORAGE) -eq 1 ]] ; then
@@ -65,11 +65,11 @@ del () {
 
 add () {
 	if grep -q '^'$2 $STORAGE ; then
-		err "Такой ключ уже существует"
+		err "Key '$2' already exists"
 	fi
 
 	if [[ -z $2 || -z $3 ]] ; then
-		err "Введите ключ и значение"
+		err "Please enter a key and a value"
 	fi
 
 	LOGIN=$2
